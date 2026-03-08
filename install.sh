@@ -72,6 +72,7 @@ link() {
 
 # Install dotfiles
 link .zshrc
+link .p10k.zsh
 link .gitconfig
 link .aliases
 
