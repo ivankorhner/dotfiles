@@ -41,7 +41,7 @@ This repo works with VS Code/Cursor dev containers. Add to `.devcontainer.json`:
 }
 ```
 
-## Updating
+## Updating Existing Configs
 
 Edit files in `~/dotfiles/`, then commit and push:
 
@@ -53,3 +53,81 @@ git push
 ```
 
 Changes are immediately reflected in `~/.zshrc` etc. via symlinks.
+
+## Adding New Content
+
+### Adding a Zsh Plugin
+
+```bash
+# 1. Install plugin locally (test it first)
+git clone https://github.com/author/plugin-name \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/plugin-name
+
+# 2. Add to .zshrc plugins list
+# Edit ~/dotfiles/.zshrc and add plugin name to plugins=()
+
+# 3. Update install.sh to auto-install the plugin
+# Add installation block to install.sh:
+#   if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/plugin-name" ]; then
+#       git clone https://github.com/author/plugin-name ...
+#   fi
+
+# 4. Commit and push
+cd ~/dotfiles
+git add .zshrc install.sh
+git commit -m "Add plugin-name plugin"
+git push
+```
+
+### Adding a New Dotfile
+
+```bash
+# 1. Copy the file to dotfiles repo
+cp ~/.vimrc ~/dotfiles/.vimrc
+
+# 2. Update install.sh to link it
+# Add to the "Install dotfiles" section:
+#   link .vimrc
+
+# 3. Commit and push
+cd ~/dotfiles
+git add .vimrc install.sh
+git commit -m "Add .vimrc configuration"
+git push
+```
+
+### Adding Config Directories (e.g., .config/nvim/)
+
+```bash
+# 1. Copy directory to dotfiles
+cp -r ~/.config/nvim ~/dotfiles/.config/
+
+# 2. Update install.sh to create directory and link
+# Add before linking dotfiles:
+#   mkdir -p ~/.config
+#   if [ -d "$DOTFILES_DIR/.config/nvim" ]; then
+#       ln -sf "$DOTFILES_DIR/.config/nvim" ~/.config/nvim
+#   fi
+
+# 3. Commit and push
+cd ~/dotfiles
+git add .config install.sh
+git commit -m "Add neovim configuration"
+git push
+```
+
+## Testing Changes
+
+Before pushing, test that install.sh works:
+
+```bash
+# Remove symlinks
+rm ~/.zshrc ~/.p10k.zsh ~/.gitconfig
+
+# Re-run installer
+cd ~/dotfiles
+./install.sh
+
+# Reload shell
+exec zsh
+```
