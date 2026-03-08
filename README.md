@@ -1,13 +1,13 @@
 # Dotfiles
 
-Personal shell configuration files.
+Personal shell configuration files with automatic zsh setup.
 
 ## Contents
 
-- `.zshrc` - Zsh configuration
-- `.bashrc` - Bash configuration
+- `.zshrc` - Zsh configuration (Powerlevel10k theme)
 - `.gitconfig` - Git configuration
 - `.aliases` - Shell aliases (if present)
+- `install.sh` - Automated installer
 
 ## Installation
 
@@ -18,7 +18,17 @@ chmod +x install.sh
 ./install.sh
 ```
 
-The install script creates symlinks from your home directory to this repo.
+The install script automatically:
+- Installs zsh (if not present)
+- Installs Oh My Zsh
+- Installs Powerlevel10k theme
+- Installs zsh plugins (autosuggestions, syntax-highlighting)
+- Creates symlinks from your home directory to this repo
+
+To set zsh as your default shell:
+```bash
+chsh -s $(which zsh)
+```
 
 ## Dev Container Integration
 
