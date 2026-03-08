@@ -1,0 +1,5 @@
+[user]
+	name = Ivan Korhner
+	email = ivan.korhner@nutanix.com
+[url "git@github.com:"]
+	insteadOf = https://github.com/
