@@ -32,14 +32,17 @@ chsh -s $(which zsh)
 
 ## Dev Container Integration
 
-This repo works with VS Code/Cursor dev containers. Add to `.devcontainer.json`:
+This repo works with VS Code/Cursor dev containers. Add to your **User Settings** (Ctrl+Shift+P → "Preferences: Open User Settings (JSON)"):
 
 ```json
-"dotfiles": {
-  "repository": "ivankorhner/dotfiles",
-  "installCommand": "install.sh"
+{
+  "dotfiles.repository": "ivankorhner/dotfiles",
+  "dotfiles.targetPath": "~/dotfiles",
+  "dotfiles.installCommand": "install.sh"
 }
 ```
+
+Or add to workspace `.vscode/settings.json` to apply only to specific projects.
 
 The dev container will automatically clone this repo and run `install.sh` to setup your shell environment (zsh, theme, plugins) when it starts.
 
