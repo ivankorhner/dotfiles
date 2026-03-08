@@ -129,3 +129,4 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/snap/bin
+export DOTFILES_REPO=ivankorhner/dotfiles
