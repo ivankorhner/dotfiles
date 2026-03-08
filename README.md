@@ -32,24 +32,16 @@ chsh -s $(which zsh)
 
 ## Dev Container Integration
 
-This repo works with VS Code/Cursor dev containers.
+This repo works with VS Code/Cursor dev containers. Add to `.devcontainer.json`:
 
-### Setup
+```json
+"dotfiles": {
+  "repository": "ivankorhner/dotfiles",
+  "installCommand": "install.sh"
+}
+```
 
-1. Set the environment variable in your host shell (already included in this repo's `.zshrc`):
-   ```bash
-   export DOTFILES_REPO=ivankorhner/dotfiles
-   ```
-
-2. Add to `.devcontainer.json`:
-   ```json
-   "dotfiles": {
-     "repository": "${localEnv:DOTFILES_REPO}",
-     "installCommand": "install.sh"
-   }
-   ```
-
-This makes dotfiles optional - users without `DOTFILES_REPO` set will skip dotfiles installation and use default bash.
+The dev container will automatically clone this repo and run `install.sh` to setup your shell environment (zsh, theme, plugins) when it starts.
 
 ## Updating Existing Configs
 
