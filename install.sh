@@ -24,6 +24,8 @@ link() {
         backup "$file"
         ln -sf "$DOTFILES_DIR/$file" "$HOME/$file"
         echo "  Linked $file"
+    else
+        echo "  Skipping $file (not found)"
     fi
 }
 
@@ -33,5 +35,6 @@ link .bashrc
 link .gitconfig
 link .aliases
 
+echo ""
 echo "Dotfiles installed successfully!"
 echo "Reload your shell: source ~/.zshrc (or source ~/.bashrc)"
