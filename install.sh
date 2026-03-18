@@ -65,6 +65,10 @@ link() {
         backup "$file"
         ln -sf "$DOTFILES_DIR/$file" "$HOME/$file"
         echo "  Linked $file"
+    elif [ -d "$DOTFILES_DIR/$file" ]; then
+        backup "$file"
+        ln -sf "$DOTFILES_DIR/$file" "$HOME/$file"
+        echo "  Linked directory $file"
     else
         echo "  Skipping $file (not found)"
     fi
@@ -75,6 +79,7 @@ link .zshrc
 link .p10k.zsh
 link .gitconfig
 link .aliases
+link .zsh
 
 echo ""
 echo "Dotfiles installed successfully!"
