@@ -10,7 +10,7 @@ DOTFILES_DIR="${HOME}/dotfiles"
 source "${DOTFILES_DIR}/.zsh/env.zsh"
 source "${DOTFILES_DIR}/.zsh/omz.zsh"
 source "${DOTFILES_DIR}/.zsh/git.zsh"
-source "${DOTFILES_DIR}/.zsh/kubectl.zsh"
+source "${DOTFILES_DIR}/.zsh/dncm.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
